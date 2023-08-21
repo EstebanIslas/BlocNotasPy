@@ -15,4 +15,18 @@ class Actions:
 
         else:
             print(f"\nError: La nota no se ha creado")
-            
+
+    def mostrar(self, usuario):
+        print(f"{usuario[1]} estas son tus notas\n")
+
+        nota = model.Nota(usuario[0])
+        notas = nota.show()
+
+        #Recorrer notas
+        for nota in notas:
+            print("*********************************")
+            print(nota[2])
+            print(nota[3])
+            print(nota[4])
+            print("*********************************")
+    

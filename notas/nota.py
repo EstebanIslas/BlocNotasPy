@@ -7,7 +7,7 @@ sql = conn[1]
 
 class Nota:
 
-    def __init__(self, user_id, title, description):
+    def __init__(self, user_id, title = "", description= ""):
         self.user_id = user_id
         self.title = title
         self.description = description
@@ -21,3 +21,12 @@ class Nota:
         cnbd.commit()
 
         return [sql.rowcount, self]
+
+    def show(self):
+        query = f"SELECT * FROM notas WHERE user_id = {self.user_id}"
+
+        sql.execute(query)
+        result = sql.fetchall()
+
+        return result
+    

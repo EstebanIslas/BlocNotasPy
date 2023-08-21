@@ -51,11 +51,14 @@ class Actions():
             self.menuActions(user_log)
 
         elif action.lower() == "mostrar":
-            print("Mostrar")
+            
+            nota_controller.mostrar(user_log)
             self.menuActions(user_log)
+
         elif action.lower() == "eliminar":
             print("Eliminar")
             self.menuActions(user_log)
+            
         elif action.lower() == "salir":
             print("Sesión Finalizada!! :)")
             exit()
