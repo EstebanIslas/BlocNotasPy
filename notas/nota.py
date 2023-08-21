@@ -30,3 +30,11 @@ class Nota:
 
         return result
     
+    def destroy(self):
+        query = f"DELETE FROM notas WHERE user_id = {self.user_id} AND title LIKE '%{self.title}%'"
+
+        sql.execute(query)
+        cnbd.commit()
+
+        return [sql.rowcount, self]
+    

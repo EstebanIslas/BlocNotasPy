@@ -30,3 +30,16 @@ class Actions:
             print(nota[4])
             print("*********************************")
     
+    def eliminar(self, usuario):
+        print(f"\n {usuario[1]} Eliminando notas")
+
+        title = str(input("Introduce el titulo de la nota que deseas borrar: "))
+
+        nota = model.Nota(usuario[0], title)
+        
+        drop = nota.destroy()
+
+        if drop[0] >= 1:
+            print(f"La nota ha sido eliminada: {nota.title}")
+        else:
+            print("Error al eliminar la nota!!")
