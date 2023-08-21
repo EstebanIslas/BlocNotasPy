@@ -1,6 +1,6 @@
 import datetime
 import hashlib #Cifrado de pwd
-import users.conexion as connection
+import bd.conexion as connection
 
 conn = connection.connect()
 cnbd = conn[0]

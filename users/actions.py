@@ -1,4 +1,5 @@
 import users.user as model
+import notas.actions as notaController
 
 class Actions():
     
@@ -43,10 +44,12 @@ class Actions():
         """)
 
         action = str(input("Selecciona la accion a realizar: "))
+        nota_controller = notaController.Actions()
 
         if action.lower() == "crear":
-            print("Crear")
+            nota_controller.crear(user_log)
             self.menuActions(user_log)
+
         elif action.lower() == "mostrar":
             print("Mostrar")
             self.menuActions(user_log)
