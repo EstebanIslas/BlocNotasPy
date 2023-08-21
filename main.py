@@ -1,9 +1,5 @@
-"""
-Proyecto creado en MVC backend
--Abrir asistente
--Login y Registro
--Creación, Edición, Eliminado y Listas de datos
-"""
+from users import actions
+
 
 print("""
 Acciones Disponibles:
@@ -11,17 +7,12 @@ Acciones Disponibles:
     - Login
 """)
 
-accion = str(input("Ingresa el comando que desee utilizar: "))
+doThe = actions.Actions() #Instancia de clase users
+
+accion = str(input("Ingresa el comando que desee utilizar:"))
 
 if accion.lower() == "registro":
-    print("\nAccion de registro")
-    name = str(input("Ingresa el nombre: "))
-    last_name = str(input("Ingresa tus apellidos: "))
-    email = str(input("Ingresa tu email: "))
-    password = str(input("Ingresa tu contraseña: "))
-
+    doThe.register()
 
 elif accion.lower() == "login":
-    print("\nAccion de login")
-    email = str(input("Ingresa tu email: "))
-    password = str(input("Ingresa tu contraseña: "))
+    doThe.login()
