@@ -17,6 +17,17 @@ class Actions():
             print("Fallo en el registro!!")
 
     def login(self):
-        email = str(input("Ingresa tu email: "))
-        password = str(input("Ingresa tu contraseña: "))
-    
+
+        try:
+            email = str(input("\n\nIngresa tu email: "))
+            password = str(input("Ingresa tu contraseña: "))
+
+            user = model.User('', '', email, password)
+
+            login = user.identificar()
+
+            if email == login[3]:
+                print(f"\n\nBienvenido {login[1]} a Tus Notas")
+        except Exception as e:
+            print(f"Acceso Denegado!!")
+        

@@ -1,17 +1,10 @@
-import mysql.connector
 import datetime
 import hashlib #Cifrado de pwd
+import users.conexion as connection
 
-#Conexion a la bd
-cnbd = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="",
-    database="notes_python",
-    port=3306
-)
-
-sql = cnbd.cursor(buffered=True) #Generar consultas
+conn = connection.connect()
+cnbd = conn[0]
+sql = conn[1]
 
 class User:
 
@@ -41,4 +34,18 @@ class User:
         return result
 
     def identificar(self):
-        return self.name
+        
+        #Validar en bd
+        query = "SELECT * FROM users WHERE email = %s AND password = %s"
+
+        #Cifrado de Password
+        cifrado = hashlib.sha256()
+        cifrado.update(self.password.encode('utf8')) #Cifrar enviando el parametro en bytes
+
+        #Data Consult
+        user = (self.email, cifrado.hexdigest())
+
+        sql.execute(query, user)
+        result = sql.fetchone()
+
+        return result
