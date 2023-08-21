@@ -27,7 +27,32 @@ class Actions():
             login = user.identificar()
 
             if email == login[3]:
-                print(f"\n\nBienvenido {login[1]} a Tus Notas")
+                print(f"\n\nBienvenido {login[1]} a Tus Notas\n")
+                self.menuActions(login)
+
         except Exception as e:
             print(f"Acceso Denegado!!")
         
+    def menuActions(self, user_log):
+        print("""
+        Menu de acciones:
+        - Crear nota    (crear)
+        - Mostrar nota  (mostrar)
+        - Eliminar Nota (eliminar)
+        - Cerrar Sesion (salir)
+        """)
+
+        action = str(input("Selecciona la accion a realizar: "))
+
+        if action.lower() == "crear":
+            print("Crear")
+            self.menuActions(user_log)
+        elif action.lower() == "mostrar":
+            print("Mostrar")
+            self.menuActions(user_log)
+        elif action.lower() == "eliminar":
+            print("Eliminar")
+            self.menuActions(user_log)
+        elif action.lower() == "salir":
+            print("Sesión Finalizada!! :)")
+            exit()
