@@ -1,5 +1,6 @@
 import mysql.connector
 import datetime
+import hashlib #Cifrado de pwd
 
 #Conexion a la bd
 cnbd = mysql.connector.connect(
@@ -22,8 +23,13 @@ class User:
 
     def register(self):
         date = datetime.datetime.now()
+
+        #Cifrado de Password
+        cifrado = hashlib.sha256()
+        cifrado.update(self.password.encode('utf8')) #Cifrar enviando el parametro en bytes
+
         query = "INSERT INTO users VALUES(null, %s, %s, %s, %s, %s)"
-        user = (self.name, self.last_name, self.email, self.password, date)
+        user = (self.name, self.last_name, self.email, cifrado.hexdigest(), date)
 
         try:
             sql.execute(query, user)
